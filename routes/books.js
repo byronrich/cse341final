@@ -17,7 +17,7 @@ router.post("/", booksController.createBook);
            $title: 'The Hobbit',
            $isbn: '9780547928227',
            $publicationYear: 1937,
-           $authorId: '683a7d9c5e1b2f7a9c123456'
+           $authorId: '6a245d923f08e108ca1e4a28'
        }
    }
 */
@@ -35,10 +35,10 @@ router.put("/:id", booksController.updateBook);
        in: 'body',
        required: true,
        schema: {
-           $title: 'Updated Book',
+           $title: 'Updated Book Title',
            $isbn: '9780547928227',
-           $publicationYear: 1950,
-           $authorId: '683a7d9c5e1b2f7a9c123456'
+           $publicationYear: 1954,
+           $authorId: '6a245d923f08e108ca1e4a28'
        }
    }
 */
