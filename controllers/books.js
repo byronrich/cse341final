@@ -24,9 +24,9 @@ const getBookById = async (req, res) => {
         
         res.setHeader('Content-Type', 'application/json');
 
-        if (!result) {
+        if (!result || result.length === 0) {
             return res.status(404).json({
-                message: "Author not found"
+                message: "Book not found"
             });
         }
 
@@ -42,7 +42,7 @@ const createBook = async (req, res) => {
     const books = {
         title: req.body.title,
         isbn: req.body.isbn,
-        publicationYear: req.body,publicationYear,
+        publicationYear: req.body.publicationYear,
         authorId: req.body.authorId
     };
     try {
@@ -50,7 +50,7 @@ const createBook = async (req, res) => {
         if (response.acknowledged) {
             res.status(204).send();
         } else {
-            res.status(500).json(response.error || 'Some error occured while creating the Author');
+            res.status(500).json(response.error || 'Some error occured while creating the Book');
         }
     } catch (err) {
         res.status(400).json({
@@ -66,7 +66,7 @@ const updateBook = async (req, res) => {
     const books = {
         title: req.body.title,
         isbn: req.body.isbn,
-        publicationYear: req.body,publicationYear,
+        publicationYear: req.body.publicationYear,
         authorId: req.body.authorId
     };
     try {
@@ -74,11 +74,11 @@ const updateBook = async (req, res) => {
         if (response.modifiedCount > 0) {
             res.status(204).send();
         } else {
-            res.status(500).json(response.error || 'Some error occured while updating the author')
+            res.status(500).json(response.error || 'Some error occured while updating the book')
         }
     } catch (error) {
         console.error('Database Error:', error);
-        res.status(500).json(error.message || 'Some error occurred while updating the author');
+        res.status(500).json(error.message || 'Some error occurred while updating the book');
     }
 };
 
@@ -91,11 +91,11 @@ const deleteBook = async (req, res) => {
         if (response.deletedCount > 0) {
             res.status(204).send();
         } else {
-            res.status(500).json(response.error || 'Some error occured while deleting the author')
+            res.status(500).json(response.error || 'Some error occured while deleting the book')
         }
     } catch (error) {
         console.error('Database Error:', error);
-        res.status(500).json(error.message || 'Some error occurred while deleting the author');
+        res.status(500).json(error.message || 'Some error occurred while deleting the book');
     }
 };
 
